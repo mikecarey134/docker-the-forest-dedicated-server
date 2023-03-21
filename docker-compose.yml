@@ -2,8 +2,8 @@ version: "3.7"
 services:
   the-forest-dedicated-server:
     container_name: the-forest-dedicated-server
-    image: jammsen/the-forest-dedicated-server:latest
-    restart: always
+    image: briancuerdon/the-forest-dedicated-server:latest
+    restart: unless-stopped
     environment:
       SERVER_STEAM_ACCOUNT_TOKEN: YOUR_TOKEN_HERE
     ports:
