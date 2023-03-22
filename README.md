@@ -7,7 +7,7 @@ This includes a The Forest Dedicated Server based on Docker with Wine and an exa
 ## Getting started
 WARNING: If you do not do Step 1 and 2 your server can/will not save!
 1. Create a new game server account over at https://steamcommunity.com/dev/managegameservers (Use AppID: `242760`)
-2. Insert the Login Token into file SteamToken without spaces before or after
+2. Insert the Login Token into file SteamToken file without spaces before or after
 4. Start the container with the following examples:
 
 Bash:
