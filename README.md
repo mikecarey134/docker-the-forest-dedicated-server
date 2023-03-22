@@ -7,15 +7,12 @@ This includes a The Forest Dedicated Server based on Docker with Wine and an exa
 ## Getting started
 WARNING: If you do not do Step 1 and 2 your server can/will not save!
 1. Create a new game server account over at https://steamcommunity.com/dev/managegameservers (Use AppID: `242760`)
-2. Insert the Login Token into the environment variable via docker-run or docker-compose (at `SERVER_STEAM_ACCOUNT_TOKEN`)
-3. Create 2 directories on your Docker node (`<REPLACE-WITH-PATH>/steamcmd` and `<REPLACE-WITH-PATH>/game`)
+2. Insert the Login Token into file SteamToken without spaces before or after
 4. Start the container with the following examples:
 
 Bash:
-```console
-docker run --rm -i -t -e 'SERVER_STEAM_ACCOUNT_TOKEN=YOUR_TOKEN_HERE' -p 8766:8766/tcp -p 8766:8766/udp -p 27015:27015/tcp -p 27015:27015/udp -p 27016:27016/tcp -p 27016:27016/udp -v <REPLACE-WITH-PATH>/steamcmd:/steamcmd -v <REPLACE-WITH-PATH>/game:/theforest --name the-forest-dedicated-server briancuerdon/the-forest-dedicated-server:latest
-or
-docker run --rm -i -t -e 'SERVER_STEAM_ACCOUNT_TOKEN=YOUR_TOKEN_HERE' -p 8766:8766/tcp -p 8766:8766/udp -p 27015:27015/tcp -p 27015:27015/udp -p 27016:27016/tcp -p 27016:27016/udp -v $(pwd)/theforest/steamcmd:/steamcmd -v $(pwd)/theforest/game:/theforest --name the-forest-dedicated-server briancuerdon/the-forest-dedicated-server:latest
+```
+run ./run-docker-server.sh after building with ./build-docker-server.sh or run ./build-and-run-docker-server.sh
 ```
 Docker-Compose:
 ```yaml
@@ -23,10 +20,10 @@ version: "3.7"
 services:
   the-forest-dedicated-server:
     container_name: the-forest-dedicated-server
-    image: briancuerdon/the-forest-dedicated-server:latest
+    image: theforestdedicated:latest
     restart: unless-stopped
     environment:
-      SERVER_STEAM_ACCOUNT_TOKEN: YOUR_TOKEN_HERE
+      SERVER_STEAM_ACCOUNT_TOKEN: SERVER_STEAM_ACCOUNT_TOKEN
     ports:
       - 8766:8766/tcp
       - 8766:8766/udp
@@ -35,9 +32,9 @@ services:
       - 27016:27016/tcp
       - 27016:27016/udp
     volumes:
-      - <REPLACE-WITH-PATH>/steamcmd:/steamcmd
-      - <REPLACE-WITH-PATH>/game:/theforest
-      - <REPLACE-WITH-PATH>/winedata:/winedata
+      - /steamcmd:/steamcmd
+      - /game:/theforest
+      - /winedata:/winedata
 ```
 
 ## Environment variables
@@ -72,7 +69,7 @@ services:
 | REALISTIC_PLAYER_DAMAGE     | off                  | Realistic Player Damage (On/Off), this allows the game to be more PvP based. Damage to other players will be increased dramatically, depending on the weapon. |
 
 ## Planned features in the future
-Nothing yet
+Backups for slot saves
 
 ## Software used
 * Debian Slim Stable

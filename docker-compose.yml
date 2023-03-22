@@ -2,10 +2,10 @@ version: "3.7"
 services:
   the-forest-dedicated-server:
     container_name: the-forest-dedicated-server
-    image: briancuerdon/the-forest-dedicated-server:latest
+    image: theforestdedicated:latest
     restart: unless-stopped
     environment:
-      SERVER_STEAM_ACCOUNT_TOKEN: YOUR_TOKEN_HERE
+      SERVER_STEAM_ACCOUNT_TOKEN: SERVER_STEAM_ACCOUNT_TOKEN
     ports:
       - 8766:8766/tcp
       - 8766:8766/udp
